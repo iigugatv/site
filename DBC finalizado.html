@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Infrações</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="max-w-4xl mx-auto p-8 mt-10 bg-white rounded-lg shadow-lg">
+        <h1 class="text-3xl font-extrabold text-center text-blue-700 mb-8">Consulta de Infrações</h1>
+
+        <!-- Formulário de seleção -->
+        <div class="mb-6">
+            <label for="infraction" class="block text-lg font-semibold mb-2">Escolha a infração:</label>
+            <select id="infraction" class="w-full p-3 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300" onchange="verificarInfraction()">
+                <option value="" disabled selected>Selecione...</option>
+                <option value="DIRIGIR SOB INFLUÊNCIA DE SUBSTÂNCIAS">Dirigir sob influência de substâncias</option>
+                <option value="FUGA APÓS CAUSAR UM ACIDENTE">Fuga após causar um acidente</option>
+                <option value="USO DE VEÍCULO FURTADO ">Uso de veículo furtado</option>
+                <option value="ASSALTO A CASA">Assalto a casa</option>
+                <option value="ASSALTO A JOALHARIA">Assalto a joalharia</option>
+                <option value="ASSALTO A BANCO">Assalto a banco</option>
+                <option value="ASSALTO A LOJA">Assalto a loja</option>
+                <option value="ASSALTO A LOJA DE ARMAS">Assalto a loja de armas</option>
+                <option value="ASSALTO A CARRINHA DE VALORES">Assalto a carrinha de valores</option>
+                <option value="BURLA">Burla</option>
+                <option value="FURTO">Furto</option>
+                <option value="ROUBO">Roubo</option>
+                <option value="ROUBO DE ARMAMENTO DO ESTADO">Roubo de armamento do estado</option>
+                <option value="DEITAR FORA UMA ARMA DE FOGO">Deitar fora uma arma de fogo.</option>
+                <option value="DESOBEDIÊNCIA">Desobediência</option>
+                <option value="DESRESPEITO À AUTORIDADE">Desrespeito à autoridade</option>
+                <option value="DESRESPEITO EM TRIBUNAL">Desrespeito em tribunal</option>
+                <option value="ESCAPAR A CUSTÓDIA">Escapar à custódia</option>
+                <option value="USURPAÇÃO DE IDENTIDADE">Usurpação de identidade</option>
+                <option value="USURPAÇÃO DE FUNÇÕES">Usurpação de funções</option>
+                <option value="USURPAÇÃO DE FUNÇÕES DE UM FUNCIONÁRIO PÚBLICO">Usurpação de funções de um funcionário público</option>
+                <option value="FUGA AO FISCO">Fuga ao fisco</option>
+                <option value="FUGA ÀS AUTORIDADES">Fuga às autoridades</option>
+                <option value="INVASÃO DE UMA PROPRIEDADE PRIVADA ESTATAL">Invasão de uma propriedade privada estatal</option>
+                <option value="OMISSÃO DE AUXÍLIO">Omissão de auxílio</option>
+                <option value="ORGANIZAÇÃO DE EVENTOS ILEGAIS">Organização de eventos ilegais</option>
+                <option value="PECULATO">Peculato</option>
+                <option value="FALSIDADE DE DEPOIMENTO OU DECLARAÇÃO">Falsidade de depoimento ou declaração</option>
+                <option value="OBSTRUÇÃO À JUSTIÇA">Obstrução à justiça</option>
+                <option value="RESISTÊNCIA À ORDEM DE PRISÃO">Resistência à ordem de prisão</option>
+                <option value="PSEUDOCÍDIO">Pseudocídio</option>
+                <option value="SUBORNO">Suborno.</option>
+                <option value="TENTATIVA DE SUBORNO">Tentativa de suborno.</option>
+                <option value="TENTATIVA DE FUGA ÀS AUTORIDADES">Tentativa de fuga às autoridades</option>
+                <option value="UTILIZAÇÃO ABUSIVA DOS SERVIÇOS TELEFÔNICOS ESTATAIS">Utilização abusiva dos serviços telefônicos estatais</option>
+                <option value="AMEAÇA">Ameaça</option>
+                <option value="ASSÉDIO">Assédio</option>
+                <option value="CRIAÇÃO DE LOCAL PARA FINS DE TORTURA">Criação de local para fins de tortura</option>
+                <option value="DESACATOS">Desacatos</option>
+                <option value="DIFAMAÇÃO">Difamação</option>
+                <option value="EXPOSIÇÃO AO ABANDONO">Exposição ao abandono</option>
+                <option value="EXTORSÃO">Extorsão</option>
+                <option value="INVASÃO DE UMA PROPRIEDADE PRIVADA">Invasão de uma propriedade privada</option>
+                <option value="OFENSA À INTEGRIDADE FÍSICA GRAVE">Ofensa à integridade física grave</option>
+                <option value="OFENSA À INTEGRIDADE FÍSICA SIMPLES">Ofensa à integridade física simples</option>
+                <option value="VIOLÊNCIA DOMÉSTICA">Violência doméstica</option>
+                <option value="SEQUESTRO">Sequestro</option>
+                <option value="TORTURA">Tortura</option>
+                <option value="ASSALTO AO PORTA-AVIÕES">Assalto ao porta-aviões</option>
+                <option value="ATIVIDADE TERRORISTA">Atividade terrorista</option>
+                <option value="COMPRA E VENDA DE ARMAS">Compra e venda de armas</option>
+                <option value="COMPRA DE LICENÇAS">Compra de licenças</option>
+                <option value="COMPRA E VENDA DE MEDICKITS">Compra e venda de medickits</option>
+                <option value="EXIBIÇÃO DE UMA ARMA DE FOGO EM PÚBLICO">Exibição de uma arma de fogo em público</option>
+                <option value="INCITAÇÃO AO ÓDIO">Incitação ao ódio</option>
+                <option value="MINERAÇÃO ILEGAL">Mineração ilegal</option>
+                <option value="POSSE DE ARMA BRANCA S/PORTE">Posse de arma branca s/porte</option>
+                <option value="POSSE DE DINHEIRO NÃO DECLARADO">Posse de dinheiro não declarado</option>
+                <option value="HOMICÍDIO">Homicídio</option>
+                <option value="HOMICÍDIO POR NEGLIGÊNCIA">Homicídio por negligência</option>
+                <option value="HOMICÍDIO QUALIFICADO">Homicídio qualificado</option>
+                <option value="LAVAGEM DE DINHEIRO">Lavagem de dinheiro</option>
+                <option value="ORGANIZAÇÃO CRIMINOSA">Organização criminosa</option>
+                <option value="POSSE DE UMA ARMA DE FOGO ILEGAL DE BAIXO CALIBRE">Posse de arma de fogo ilegal de baixo calibre</option>
+                <option value="POSSE DE UMA ARMA DE FOGO ILEGAL DE MÉDIO CALIBRE">Posse de arma de fogo ilegal de médio calibre</option>
+                <option value="POSSE DE UMA ARMA DE FOGO ILEGAL DE ALTO CALIBRE">Posse de arma de fogo ilegal de alto calibre</option>
+                <option value="FABRICO ILEGAL DE ARMAS">Fabrico ilegal de armas</option>
+                <option value="FABRICO DE ACESSÓRIOS PARA ARMA">Fabrico de acessórios para arma</option>
+                <option value="FABRICO ILEGAL DE MUNIÇÃO">Fabrico ilegal de munição</option>                
+            </select>
+        </div>
+
+        <!-- Campo de quantidade -->
+        <div class="mb-6">
+            <label for="quantidade" class="block text-lg font-semibold mb-2">Quantidade:</label>
+            <input type="number" id="quantidade" class="w-full p-3 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300" value="1" min="1" onchange="verificarQuantidade()">
+        </div>
+
+        <!-- Campo extra para a Posse de Droga -->
+        <div id="extra" class="hidden mb-6">
+            <label for="extra-quantidade" class="block text-lg font-semibold mb-2">Quantidade extra:</label>
+            <input type="number" id="extra-quantidade" class="w-full p-3 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300" value="0" min="0" placeholder="Somente acima de 20">
+        </div>
+
+        <!-- Botão de confirmação -->
+        <button class="w-full bg-blue-600 text-white p-4 rounded-lg font-semibold hover:bg-blue-700 transition duration-300" onclick="confirmarInfração()">Confirmar</button>
+
+        <!-- Resultados do cálculo -->
+        <div class="mt-8 p-6 bg-gray-100 rounded-lg shadow-sm">
+            <p class="text-lg"><strong>Total Coima:</strong> €<span id="total_coima">0.00</span></p>
+            <p class="text-lg"><strong>Total Pena de Prisão:</strong> <span id="total_pena">0</span></p>
+            <p class="text-lg"><strong>Notas:</strong> <span id="notas">Selecione uma infração</span></p>
+        </div>
+
+        <!-- Lista de Crimes Selecionados -->
+        <div class="mt-8 p-6 bg-gray-50 border border-gray-200 rounded-lg shadow-inner">
+            <h3 class="text-2xl font-bold mb-4 text-gray-700">Crimes Selecionados</h3>
+            <div id="selected-crimes" class="space-y-3"></div>
+        </div>
+
+        <!-- Exibição de detalhes -->
+        <div class="mt-8 p-6 bg-gray-50 border border-gray-200 rounded-lg shadow-inner">
+            <h3 class="text-2xl font-bold mb-4 text-gray-700">Detalhes dos Crimes</h3>
+            <div id="detalhes-crime-list" class="space-y-3"></div>
+        </div>
+    </div>
+    <script>
+    const infracoes = {
+"DIRIGIR SOB INFLUÊNCIA DE SUBSTÂNCIAS": { coima: 3000, pena: 3, notas: "Dirigir um veículo com motor sob influência de estupefacientes e álcool ( mínimo legal 0,05 g/l) (máximo 1,2g/l)." },
+"FUGA APÓS CAUSAR UM ACIDENTE": { coima: 7500, pena: 3, notas: "Fuga após causar um acidente." },
+"USO DE VEÍCULO FURTADO ": { coima: 10000, pena: 4, notas: "Uso de veículo furtado" },
+"ASSALTO A CASA": { coima: 30000, pena: 7, notas: "Assalto a casa." },
+"ASSALTO A JOALHARIA": { coima: 75000, pena: 20, notas: "Assalto a joalharia." },
+"ASSALTO A BANCO": { coima: 150000, pena: 30, notas: "Assalto a banco." },
+"ASSALTO A LOJA": { coima: 52500, pena: 15, notas: "Assalto a loja." },
+"ASSALTO A LOJA DE ARMAS": { coima: 105000, pena: 25, notas: "Assalto a loja de armas." },
+"ASSALTO A CARRINHA DE VALORES": { coima: 40000, pena: 10, notas: "Assalto a carrinha de valores." },
+"BURLA": { coima: 20000, pena: 8, notas: "Burla." },
+"FURTO": { coima: 20000, pena: 4, notas: "Furto." },
+"ROUBO": { coima: 30000, pena: 7, notas: "Roubo." },
+"ROUBO DE ARMAMENTO DO ESTADO": { coima: 60000, pena: 12, notas: "Roubo de armamento do estado." },
+"DEITAR FORA UMA ARMA DE FOGO": { coima: 21000, pena: 5, notas: "Deitar fora uma arma de fogo." },
+"DESOBEDIÊNCIA": { coima: 5000, pena: 2, notas: "Desobediência." },
+"DESRESPEITO À AUTORIDADE": { coima: 25000, pena: 5, notas: "Desrespeito à autoridade." },
+"DESRESPEITO EM TRIBUNAL": { coima: 25000, pena: 5, notas: "Desrespeito em tribunal." },
+"ESCAPAR À CUSTÓDIA": { coima: 20000, pena: 6, notas: "Escapar à custódia." },
+"USURPAÇÃO DE IDENTIDADE": { coima: 22500, pena: 2, notas: "Usurpação de identidade." },
+"USURPAÇÃO DE FUNÇÕES": { coima: 10500, pena: 2, notas: "Usurpação de funções." },
+"USURPAÇÃO DE FUNÇÕES DE UM FUNCIONÁRIO PÚBLICO": { coima: 35000, pena: 6, notas: "Usurpação de funções de um funcionário público." },
+"FUGA AO FISCO": { coima: 70000, pena: 5, notas: "Fuga ao fisco." },
+"FUGA ÀS AUTORIDADES": { coima: 50000, pena: 8, notas: "Fuga às autoridades." },
+"INVASÃO DE UMA PROPRIEDADE PRIVADA ESTATAL": { coima: 45000, pena: 6, notas: "Invasão de uma propriedade privada estatal." },
+"OBSTRUÇÃO À JUSTIÇA": { coima: 15000, pena: 3, notas: "Obstrução à justiça." },
+"OMISSÃO DE AUXÍLIO": { coima: 11250, pena: 6, notas: "Omissão de auxílio." },
+"ORGANIZAÇÃO DE EVENTOS ILEGAIS": { coima: 37500, pena: 4, notas: "Organização de eventos ilegais." },
+"PECULATO": { coima: 70000, pena: 15, notas: "Peculato." },
+"FALSIDADE DE DEPOIMENTO OU DECLARAÇÃO": { coima: 70000, pena: 15, notas: "Falsidade de depoimento ou declaração." },
+"RESISTÊNCIA À ORDEM DE PRISÃO": { coima: 15000, pena: 5, notas: "Resistência à ordem de prisão." },
+"PSEUDOCÍDIO": { coima: 12000, pena: 4, notas: "Pseudocídio." },
+"SUBORNO": { coima: 22500, pena: 7, notas: "Suborno." },
+"TENTATIVA DE SUBORNO": { coima: 15000, pena: 5, notas: "Tentativa de suborno." },
+"PSEUDOCÍDIO": { coima: 12000, pena: 4, notas: "Pseudocídio." },
+"TENTATIVA DE FUGA ÀS AUTORIDADES": { coima: 35000, pena: 4, notas: "Tentativa de fuga às autoridades." },
+"UTILIZAÇÃO ABUSIVA DOS SERVIÇOS TELEFÔNICOS ESTATAIS": { coima: 25000, pena: 3, notas: "Utilização abusiva dos serviços telefônicos estatais." },
+"AMEAÇA": { coima: 25000, pena: 8, notas: "Ameaça." },
+"ASSÉDIO": { coima: 20000, pena: 6, notas: "Assédio." },
+"CRIAÇÃO DE LOCAL PARA FINS DE TORTURA": { coima: 60000, pena: 9, notas: "Criação de local para fins de tortura." },
+"DESACATOS": { coima: 7500, pena: 2, notas: "Desacatos." },
+"DIFAMAÇÃO": { coima: 21000, pena: 4, notas: "Difamação." },
+"EXPOSIÇÃO AO ABANDONO": { coima: 35000, pena: 10, notas: "Exposição ao abandono." },
+"EXTORSÃO": { coima: 22500, pena: 4, notas: "Extorsão." },
+"INVASÃO DE UMA PROPRIEDADE PRIVADA": { coima: 30000, pena: 6, notas: "Invasão de uma propriedade privada." },
+"OFENSA À INTEGRIDADE FÍSICA GRAVE": { coima: 15000, pena: 6, notas: "Ofensa à integridade física grave." },
+"OFENSA À INTEGRIDADE FÍSICA SIMPLES": { coima: 10500, pena: 6, notas: "Ofensa à integridade física simples." },
+"VIOLÊNCIA DOMÉSTICA": { coima: 45000, pena: 13, notas: "Violência doméstica." },
+"SEQUESTRO": { coima: 30000, pena: 8, notas: "Sequestro. Acresce 9000€ por refém." },
+"TORTURA": { coima: 90000, pena: 10, notas: "Tortura." },
+"ASSALTO AO PORTA-AVIÕES": { coima: 400000, pena: 30, notas: "Assalto ao porta-aviões." },
+"ATIVIDADE TERRORISTA": { coima: 200000, pena: 20, notas: "Atividade terrorista." },
+"COMPRA E VENDA DE ARMAS": { coima: 100000, pena: 13, notas: "Compra e venda de armas." },
+"COMPRA DE LICENÇAS": { coima: 5500, pena: 3, notas: "Compra de licenças." },
+"COMPRA E VENDA DE MEDICKITS": { coima: 45000, pena: 10, notas: "Compra e venda de medickits." },
+"EXIBIÇÃO DE UMA ARMA DE FOGO EM PÚBLICO": { coima: 25000, pena: 4, notas: "Exibir qualquer arma de fogo na presença de qualquer outra pessoa, excepto se for caso de autodefesa." },
+"FABRICO ILEGAL DE ARMAS": { coima: 112500, pena: 15, notas: "Fabricar armas de forma não declarada ou ilícita." },
+"FABRICO DE ACESSÓRIOS PARA ARMA": { coima: 67500, pena: 10, notas: "Fabrico de acessórios para arma." },
+"FABRICO ILEGAL DE MUNIÇÃO": { coima: 67500, pena: 10, notas: "Fabrico ilegal de munição." },
+"INCITAÇÃO AO ÓDIO": { coima: 22500, pena: 5, notas: "Quem profere indireta ou diretamente palavras que visem a repulsa ou hostilidade para com a vítima." },
+"MINERAÇÃO ILEGAL": { coima: 50000, pena: 3, notas: "Posse de qualquer material proveniente da mineração ilícita. Cumulativo com o crime de Posse de itens ilegais." },
+"ORGANIZAÇÃO CRIMINOSA": { coima: 90000, pena: 12, notas: "Pertencer e/ou colaborar com uma organização cuja atividade é maioritariamente ilegal e com ações criminosas." },
+"POSSE DE ARMA BRANCA S/PORTE": { coima: 15000, pena: 5, notas: "Posse de qualquer arma branca* sem a devida documentação." },
+"POSSE DE DINHEIRO NÃO DECLARADO": { coima: "75% do valor apreendido", pena: 30, notas: "Posse de dinheiro não declarado a título pessoal e/ou empresarial. Valor máximo de dinheiro permitido por lei: 10.000€." },
+"HOMICÍDIO": { coima: 85000, pena: 15, notas: "Homicídio. Acresce 15000€ se contra um funcionário público." },
+"HOMICÍDIO POR NEGLIGÊNCIA": { coima: 40000, pena: 8, notas: "Homicídio por negligência." },
+"HOMICÍDIO QUALIFICADO": { coima: 100000, pena: 20, notas: "Homicídio qualificado. Acresce 15000€ se contra um funcionário público." },
+"LAVAGEM DE DINHEIRO": { coima: 100000, pena: 15, notas: "Lavagem de dinheiro." },
+"POSSE DE UMA ARMA DE FOGO ILEGAL DE BAIXO CALIBRE": { coima: 45000, pena: 12, notas: "Posse de uma arma de fogo ilegal de baixo calibre." },
+"POSSE DE UMA ARMA DE FOGO ILEGAL DE MÉDIO CALIBRE": { coima: 70000, pena: 15, notas: "Posse de uma arma de fogo ilegal de médio calibre." },
+"POSSE DE UMA ARMA DE FOGO ILEGAL DE ALTO CALIBRE": { coima: 120000, pena: 17, notas: "Posse de uma arma de fogo ilegal de alto calibre." }
+    };
+
+    let crimesSelecionados = [];
+    let coimaExtra = 0;
+
+    function verificarInfraction() {
+        const infractionName = document.getElementById('infraction').value;
+        const extraField = document.getElementById('extra');
+        if (infractionName === "POSSE DE DROGA") {
+            extraField.classList.remove('hidden');
+        } else {
+            extraField.classList.add('hidden');
+        }
+    }
+
+    function verificarQuantidade() {
+        const quantidade = parseInt(document.getElementById('quantidade').value);
+        const infractionName = document.getElementById('infraction').value;
+        if (infractionName === "POSSE DE DROGA" && quantidade > 20) {
+            document.getElementById('extra').classList.remove('hidden');
+        } else {
+            document.getElementById('extra').classList.add('hidden');
+        }
+    }
+
+    function confirmarInfração() {
+        const infractionName = document.getElementById('infraction').value;
+        const quantidade = parseInt(document.getElementById('quantidade').value);
+        const extraQuantidade = parseInt(document.getElementById('extra-quantidade').value);
+        
+        const infracao = infracoes[infractionName];
+
+        if (infracao) {
+            let totalCoima = (infracao.coima * quantidade);
+            let totalPena = (infracao.pena * quantidade);
+            
+            if (infractionName === "POSSE DE DROGA" && quantidade > 20) {
+                coimaExtra = extraQuantidade * 1000;
+                totalCoima += coimaExtra;
+            } else {
+                coimaExtra = 0;
+            }
+
+            const totalCoimaFormatado = totalCoima.toLocaleString('pt-PT', { style: 'currency', currency: 'EUR' }).replace('€', '').trim();
+            const totalPenaFormatado = totalPena === 1 ? `1 ano` : `${Math.floor(totalPena)} anos`;
+
+            document.getElementById('total_coima').innerText = totalCoimaFormatado;
+            document.getElementById('total_pena').innerText = totalPenaFormatado;
+            document.getElementById('notas').innerText = infracao.notas;
+
+            crimesSelecionados.push({
+                nome: infractionName,
+                coima: totalCoimaFormatado,
+                pena: totalPenaFormatado,
+                coimaIndividual: infracao.coima,
+                penaIndividual: infracao.pena
+            });
+
+            atualizarListaDeCrimes();
+            atualizarDetalhes();
+        }
+    }
+
+function mostrarCampoMulta() {
+  const crimeSelecionado = document.getElementById('crime').value;
+  const campoValor = document.getElementById('campo-valor');
+  const resultadoMulta = document.getElementById('resultado-multa');
+  
+  if (crimeSelecionado === 'POSSE DE DINHEIRO NÃO DECLARADO') {
+    campoValor.classList.remove('hidden');
+    resultadoMulta.classList.remove('hidden');
+  } else {
+    campoValor.classList.add('hidden');
+    resultadoMulta.classList.add('hidden');
+  }
+}
+
+
+function calcularMulta() {
+  const valor = document.getElementById('valor').value;
+  const multa = valor * 0.75;
+  document.getElementById('multa').textContent = multa.toFixed(2); // Duas casas decimais
+}
+
+    function atualizarListaDeCrimes() {
+        const lista = document.getElementById('selected-crimes');
+        lista.innerHTML = '';
+
+        crimesSelecionados.forEach((crime, index) => {
+            const div = document.createElement('div');
+            div.classList.add('crime-item', 'flex', 'justify-between', 'items-center', 'bg-gray-300', 'p-3', 'mb-2', 'rounded');
+            div.innerHTML = `
+                <span>${crime.nome} - €${crime.coima} - ${crime.pena}</span>
+                <button class="bg-red-600 text-white p-2 rounded hover:bg-red-700" onclick="removerCrime(${index})">Remover</button>
+            `;
+            lista.appendChild(div);
+        });
+    }
+
+    function atualizarDetalhes() {
+        const listaDetalhes = document.getElementById('detalhes-crime-list');
+        listaDetalhes.innerHTML = '';
+
+        crimesSelecionados.forEach((crime, index) => {
+            const div = document.createElement('div');
+            div.classList.add('detalhes-item', 'mb-2');
+            
+            let quantidade = parseInt(document.getElementById('quantidade').value);
+            
+            let formula = `${crime.nome} = (Coima: ${quantidade} x ${crime.coimaIndividual.toLocaleString('pt-PT', { style: 'currency', currency: 'EUR' }).replace('€', '').trim()} = €${crime.coima}) | (Pena: ${quantidade} x ${crime.penaIndividual} = ${crime.pena})`;
+            
+            div.innerHTML = `
+                <div>${formula}</div>
+            `;
+            listaDetalhes.appendChild(div);
+        });
+    }
+
+    function removerCrime(index) {
+        crimesSelecionados.splice(index, 1);
+        atualizarListaDeCrimes();
+        atualizarDetalhes();
+    }
+</script>
+
+</body>
+</html>
